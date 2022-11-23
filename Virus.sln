@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Virus", "Virus.csproj", "{CE69B58D-BB43-4913-95C4-DF61958E8ACD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE69B58D-BB43-4913-95C4-DF61958E8ACD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE69B58D-BB43-4913-95C4-DF61958E8ACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE69B58D-BB43-4913-95C4-DF61958E8ACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE69B58D-BB43-4913-95C4-DF61958E8ACD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5C5DD617-9379-4940-97F8-C388B7FA45EF}
+	EndGlobalSection
+EndGlobal
