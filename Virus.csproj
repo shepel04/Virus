@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="chooseOpponent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chooseOpponent.Designer.cs">
+      <DependentUpon>chooseOpponent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     <Compile Include="VinForm.Designer.cs">
       <DependentUpon>VinForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="chooseOpponent.resx">
+      <DependentUpon>chooseOpponent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
