@@ -1,6 +1,6 @@
 ﻿namespace Virus
 {
-    partial class VinForm
+    partial class WinForm
     {
         /// <summary>
         /// Required designer variable.

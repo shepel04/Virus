@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Virus
 {
-    public partial class VinForm : Form
+    public partial class WinForm : Form
     {
-        public VinForm()
+        public WinForm()
         {
             InitializeComponent();
         }
@@ -20,15 +20,15 @@ namespace Virus
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
-            PlayField.ActiveForm.Close();
-            PlayField newField = new PlayField();
+            PlayField_Player.ActiveForm.Close();
+            PlayField_Player newField = new PlayField_Player();
             newField.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
-            PlayField.ActiveForm.Close();
+            PlayField_Player.ActiveForm.Close();
             Menu menu = new Menu();
             menu.Show();
         }

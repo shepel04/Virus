@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="chooseOpponent.cs">
+    <Compile Include="ChooseOpponent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="chooseOpponent.Designer.cs">
-      <DependentUpon>chooseOpponent.cs</DependentUpon>
+    <Compile Include="ChooseOpponent.Designer.cs">
+      <DependentUpon>ChooseOpponent.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
@@ -58,11 +58,11 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlayField.cs">
+    <Compile Include="PlayField_Player.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PlayField.Designer.cs">
-      <DependentUpon>PlayField.cs</DependentUpon>
+    <Compile Include="PlayField_Player.Designer.cs">
+      <DependentUpon>PlayField_Player.cs</DependentUpon>
     </Compile>
     <Compile Include="LoseForm.cs">
       <SubType>Form</SubType>
@@ -72,20 +72,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VinForm.cs">
+    <Compile Include="WinForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VinForm.Designer.cs">
-      <DependentUpon>VinForm.cs</DependentUpon>
+    <Compile Include="WinForm.Designer.cs">
+      <DependentUpon>WinForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="chooseOpponent.resx">
-      <DependentUpon>chooseOpponent.cs</DependentUpon>
+    <EmbeddedResource Include="ChooseOpponent.resx">
+      <DependentUpon>ChooseOpponent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PlayField.resx">
-      <DependentUpon>PlayField.cs</DependentUpon>
+    <EmbeddedResource Include="PlayField_Player.resx">
+      <DependentUpon>PlayField_Player.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoseForm.resx">
       <DependentUpon>LoseForm.cs</DependentUpon>
@@ -99,8 +99,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="VinForm.resx">
-      <DependentUpon>VinForm.cs</DependentUpon>
+    <EmbeddedResource Include="WinForm.resx">
+      <DependentUpon>WinForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

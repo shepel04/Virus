@@ -10,11 +10,29 @@ using System.Windows.Forms;
 
 namespace Virus
 {
-    public partial class chooseOpponent : Form
+    public partial class ChooseOpponent : Form
     {
-        public chooseOpponent()
+        public ChooseOpponent()
         {
             InitializeComponent();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PlayField_Player playWithPlayerForm = new PlayField_Player();
+            playWithPlayerForm.Size = new Size(800, 400);
+            playWithPlayerForm.Show();
+            this.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

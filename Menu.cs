@@ -19,8 +19,8 @@ namespace Virus
 
         private void playButton_Click(object sender, EventArgs e)
         {            
-            PlayField form2 = new PlayField();
-            form2.Show();
+            ChooseOpponent formChooseOpponent = new ChooseOpponent();
+            formChooseOpponent.Show();
             this.Hide();
         }
 
