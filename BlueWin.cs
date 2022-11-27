@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Virus
 {
-    public partial class LoseForm : Form
+    public partial class BlueWin : Form
     {
-        public LoseForm()
+        public BlueWin()
         {
             InitializeComponent();
         }
@@ -22,6 +22,7 @@ namespace Virus
             this.Close();
             PlayField_Player.ActiveForm.Close();
             PlayField_Player newField = new PlayField_Player();
+            newField.Size = new Size(800, 400);
             newField.Show();
         }
 
@@ -31,6 +32,11 @@ namespace Virus
             PlayField_Player.ActiveForm.Close();
             Menu menu = new Menu();
             menu.Show();
+        }
+
+        private void WinForm_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

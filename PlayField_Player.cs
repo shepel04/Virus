@@ -17,11 +17,9 @@ namespace Virus
         int height = 9;
         int width = 9;
         int distanceBetweenButtons = 30;           
-        int remainingMovesCount_Virus = 4;
-        int remainingMovesCount_Antivirus = 4;
-        int second = 50;        
-        bool isTimerEnabled = false;        
-        int[] amountOfSameColors = new int[81];       
+        int remainingMovesCount_Virus = 10;
+        int remainingMovesCount_Antivirus = 10;               
+        bool isTimerEnabled = false;     
         int countMoves = 1;
         static Button[] cellsNearRed = new Button[81];
         static Button[] cellsNearBlue = new Button[81];
@@ -148,7 +146,7 @@ namespace Virus
         {
             if (allButtons[currentX, currentY].BackColor == colorOfCurrentButton)
             {
-                countInfected++;
+                ++countInfected;
                    
                 allButtons[currentX, currentY].BackColor = Color.Red;
                 allButtons[currentX, currentY].Enabled = false;
@@ -209,7 +207,7 @@ namespace Virus
         {
             if (allButtons[currentX, currentY].BackColor == colorOfCurrentButton)
             {
-                countUnInfected++;
+                ++countUnInfected;
 
                 allButtons[currentX, currentY].BackColor = Color.Blue;
                 allButtons[currentX, currentY].Enabled = false;
@@ -278,7 +276,7 @@ namespace Virus
             else if (countMoves % 2 != 0)
             {
                 --remainingMovesCount_Virus;
-                remainingMoves_Virus.Text = Convert.ToString(remainingMovesCount_Antivirus);                
+                remainingMoves_Virus.Text = Convert.ToString(remainingMovesCount_Virus);                
                 cellsNearRed = new Button[81];
             }
             
@@ -324,12 +322,7 @@ namespace Virus
             InfectButtons(currentX, currentY, colorOfCurrentButton);
             
             
-            if (remainingMovesCount_Virus == -2 && remainingMovesCount_Antivirus == -2)
-            {
-                LoseForm lose = new LoseForm();
-                lose.Show();
-                timer1.Enabled = false;
-            }
+            
 
             ++countMoves;
         }
@@ -374,8 +367,31 @@ namespace Virus
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (remainingMovesCount_Virus == 0 && remainingMovesCount_Antivirus == 0)
+            {
+                if (countInfected > countUnInfected)
+                {
+                    RedWin redWin = new RedWin();
+                    redWin.Show();
+                    timer1.Enabled = false;
+                }
+                else if (countInfected < countUnInfected)
+                {
+                    BlueWin blueWin = new BlueWin();
+                    blueWin.Show();
+                    timer1.Enabled = false;
+                }
+                else
+                {
+                    DrawForm draw = new DrawForm();
+                    draw.Show();
+                    timer1.Enabled = false;
+                }
+
+            }
+
             score_virus.Text = Convert.ToString(countInfected);
-            score_virus.Text = Convert.ToString(countUnInfected);
+            score_antivirus.Text = Convert.ToString(countUnInfected);
             foreach (var item in allButtons)
             {
                 if (item.BackColor == Color.Blue || item.BackColor == Color.Red)
@@ -386,6 +402,8 @@ namespace Virus
             
             if (countMoves % 2 != 0)
             {
+                current_move.ForeColor = Color.Red;
+                current_move.Text = "Virus";
                 
                 Enable_DisableRed(enable);
                 if (!isFirstMove)
@@ -396,6 +414,8 @@ namespace Virus
             }
             else
             {
+                current_move.ForeColor = Color.Blue;
+                current_move.Text = "Antivirus";
                 if (isFirstMove)
                 {
                     allButtons[8, 8].Enabled = false;
@@ -420,6 +440,16 @@ namespace Virus
         }
 
         private void score_virus_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void score_antivirus_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
         {
 
         }
