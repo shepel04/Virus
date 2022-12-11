@@ -25,7 +25,7 @@ namespace Virus
         private void button1_Click(object sender, EventArgs e)
         {
             PlayField_Player playWithPlayerForm = new PlayField_Player();
-            playWithPlayerForm.Size = new Size(800, 400);
+            playWithPlayerForm.Size = new Size(850, 500);
             playWithPlayerForm.Show();
             this.Hide();
         }

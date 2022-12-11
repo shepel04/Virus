@@ -22,7 +22,7 @@ namespace Virus
             this.Close();
             PlayField_Player.ActiveForm.Close();
             PlayField_Player newField = new PlayField_Player();
-            newField.Size = new Size(800, 400);
+           
             newField.Show();
         }
 

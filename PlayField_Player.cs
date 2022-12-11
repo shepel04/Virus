@@ -12,22 +12,24 @@ namespace Virus
 {
     public partial class PlayField_Player : Form
     {
-        int countInfected = 1;
-        int countUnInfected = 1;
-        int height = 9;
-        int width = 9;
-        int distanceBetweenButtons = 30;           
-        int remainingMovesCount_Virus = 10;
-        int remainingMovesCount_Antivirus = 10;               
-        bool isTimerEnabled = false;     
-        int countMoves = 1;
-        static Button[] cellsNearRed = new Button[81];
-        static Button[] cellsNearBlue = new Button[81];
-        int countForNearCells_1 = 0;
-        int countForNearCells_2 = 0;
-        bool enable = true;
-        bool disable = false;
-        bool isFirstMove = true;
+        private int countInfected = 1;
+        private int countUnInfected = 1;
+        private int height = 9;
+        private int width = 9;
+        private int distanceBetweenButtons = 30;
+        private int remainingMovesCount_Virus = 10;
+        private int remainingMovesCount_Antivirus = 10;
+        private int countMoves = 1;
+
+        private static List<Button> cellsNearRed = new List<Button>();
+        private static List<Button> cellsNearBlue = new List<Button>();
+
+        private bool enable = true;
+        private bool disable = false;
+        private bool isFirstMove = true;
+        private bool isFirsBlueSelect = false;
+        private bool isFirsRedSelect = false;
+        private bool isTimerEnabled = false;
 
         private static readonly Random rndGen = new Random();
         private Color[] colors = new Color[6] { Color.Green, Color.Gray, Color.Yellow, Color.Purple, Color.Peru, Color.LightSeaGreen};
@@ -45,11 +47,11 @@ namespace Virus
             Random random = new Random();
             allButtons = new Button[width, height];
             int indexOfColor = 0;
-            for (int x = 250; (x - 250) < width * distanceBetweenButtons; x += distanceBetweenButtons)
+            for (int x = 280; (x - 280) < width * distanceBetweenButtons; x += distanceBetweenButtons)
             {
                 for (int y = 50; (y - 50) < height * distanceBetweenButtons; y += distanceBetweenButtons)
                 {                    
-                    indexOfColor = rndGen.Next(0, colors.Length - 1); 
+                    indexOfColor = rndGen.Next(0, colors.Length); 
                     randomColor = colors[indexOfColor];
                     Button button = new Button();
                     button.Location = new Point(x, y);
@@ -57,7 +59,7 @@ namespace Virus
                     button.BackColor = randomColor;                    
                     button.Enabled = false;                    
                     Controls.Add(button);
-                    allButtons[(x - 250) / distanceBetweenButtons, (y - 50) / distanceBetweenButtons] = button;
+                    allButtons[(x - 280) / distanceBetweenButtons, (y - 50) / distanceBetweenButtons] = button;
                     button.Click += new EventHandler(FieldClick);
 
 
@@ -68,6 +70,7 @@ namespace Virus
 
         private void FirstCheckEnabledButtons(Button[,] allButtons)
         {
+            
             if (width - 9 == 0 && height - 9 == 0)
             {
                 allButtons[0, 0].BackColor = Color.Red;
@@ -81,33 +84,28 @@ namespace Virus
 
         private void EnableNext(Button[,] allButtons, int currentX, int currentY)
         {
-            cellsNearBlue = new Button[30];
-            cellsNearRed = new Button[30];
+            
             if (countMoves % 2 == 0)
             {
                 if (currentY + 1 != 9)
                 {
                     allButtons[currentX, currentY + 1].Enabled = true;
-                    cellsNearBlue[countForNearCells_1] = allButtons[currentX, currentY + 1];
-                    ++countForNearCells_1;
+                    cellsNearBlue.Add(allButtons[currentX, currentY + 1]);
                 }
                 if (currentX + 1 != 9)
                 {
                     allButtons[currentX + 1, currentY].Enabled = true;
-                    cellsNearBlue[countForNearCells_1] = allButtons[currentX + 1, currentY];
-                    ++countForNearCells_1;
+                    cellsNearBlue.Add(allButtons[currentX + 1, currentY]);
                 }
                 if (currentY - 1 != -1)
                 {
                     allButtons[currentX, currentY - 1].Enabled = true;
-                    cellsNearBlue[countForNearCells_1] = allButtons[currentX, currentY - 1];
-                    ++countForNearCells_1;
+                    cellsNearBlue.Add(allButtons[currentX, currentY - 1]);
                 }
                 if (currentX - 1 != -1)
                 {
                     allButtons[currentX - 1, currentY].Enabled = true;
-                    cellsNearBlue[countForNearCells_1] = allButtons[currentX - 1, currentY];
-                    ++countForNearCells_1;
+                    cellsNearBlue.Add(allButtons[currentX - 1, currentY]);
                 }
             }
 
@@ -116,26 +114,22 @@ namespace Virus
                 if (currentY + 1 != 9)
                 {
                     allButtons[currentX, currentY + 1].Enabled = true;
-                    cellsNearRed[countForNearCells_2] = allButtons[currentX, currentY + 1];
-                    ++countForNearCells_2;
+                    cellsNearRed.Add(allButtons[currentX, currentY + 1]);
                 }
                 if (currentX + 1 != 9)
                 {
                     allButtons[currentX + 1, currentY].Enabled = true;
-                    cellsNearRed[countForNearCells_2] = allButtons[currentX + 1, currentY];
-                    ++countForNearCells_2;
+                    cellsNearRed.Add(allButtons[currentX + 1, currentY]);
                 }
                 if (currentY - 1 != -1)
                 {
                     allButtons[currentX, currentY - 1].Enabled = true;
-                    cellsNearRed[countForNearCells_2] = allButtons[currentX, currentY - 1];
-                    ++countForNearCells_2;
+                    cellsNearRed.Add(allButtons[currentX, currentY - 1]);
                 }
                 if (currentX - 1 != -1)
                 {
                     allButtons[currentX - 1, currentY].Enabled = true;
-                    cellsNearRed[countForNearCells_2] = allButtons[currentX - 1, currentY];
-                    ++countForNearCells_2;
+                    cellsNearRed.Add(allButtons[currentX - 1, currentY]);
                 }
             }
 
@@ -144,6 +138,16 @@ namespace Virus
 
         private void InfectButtons(int currentX, int currentY, Color colorOfCurrentButton)
         {
+            if (currentX == 0 && currentY == 1 && !isFirsRedSelect)
+            {
+                cellsNearRed.Add(allButtons[1, 0]);
+                isFirsRedSelect = true;
+            }
+            else if (currentX == 1 && currentY == 0 && !isFirsRedSelect)
+            {
+                cellsNearRed.Add(allButtons[0, 1]);
+                isFirsRedSelect = true;
+            }
             if (allButtons[currentX, currentY].BackColor == colorOfCurrentButton)
             {
                 ++countInfected;
@@ -154,27 +158,27 @@ namespace Virus
                 if (currentY - 1 != -1 && allButtons[currentX, currentY - 1].BackColor != Color.Red)
                 {
                     allButtons[currentX, currentY - 1].Enabled = true;
-                    cellsNearRed[countForNearCells_2] = allButtons[currentX, currentY - 1];
-                    ++countForNearCells_2;
+                    cellsNearRed.Add(allButtons[currentX, currentY - 1]);
+                    
                 }
                 if (currentX - 1 != -1 && allButtons[currentX - 1, currentY].BackColor != Color.Red)
                 {
                     allButtons[currentX - 1, currentY].Enabled = true;
-                    cellsNearRed[countForNearCells_2] = allButtons[currentX - 1, currentY];
-                    ++countForNearCells_2;
+                    cellsNearRed.Add(allButtons[currentX - 1, currentY]);
+                    
                 }
 
                 if (currentY + 1 != 9 && allButtons[currentX, currentY + 1].BackColor != Color.Red)
                 {
                     allButtons[currentX, currentY + 1].Enabled = true;
-                    cellsNearRed[countForNearCells_2] = allButtons[currentX, currentY + 1];
-                    ++countForNearCells_2;
+                    cellsNearRed.Add(allButtons[currentX, currentY + 1]);
+                    
                 }
                 if (currentX + 1 != 9 && allButtons[currentX + 1, currentY].BackColor != Color.Red)
                 {
                     allButtons[currentX + 1, currentY].Enabled = true;
-                    cellsNearRed[countForNearCells_2] = allButtons[currentX + 1, currentY];
-                    ++countForNearCells_2;
+                    cellsNearRed.Add(allButtons[currentX + 1, currentY]);
+                    
                 } 
 
 
@@ -205,6 +209,17 @@ namespace Virus
 
         private void UnInfectButtons(int currentX, int currentY, Color colorOfCurrentButton)
         {
+            if (currentX == 7 && currentY == 8 && !isFirsBlueSelect)
+            {
+                cellsNearBlue.Add(allButtons[8, 7]);
+                isFirsBlueSelect = true;    
+            }
+            else if (currentX == 8 && currentY == 7 && !isFirsBlueSelect)
+            {
+                cellsNearBlue.Add(allButtons[7, 8]);
+                isFirsBlueSelect = true;
+            }
+
             if (allButtons[currentX, currentY].BackColor == colorOfCurrentButton)
             {
                 ++countUnInfected;
@@ -215,27 +230,23 @@ namespace Virus
                 if (currentY - 1 != -1 && allButtons[currentX, currentY - 1].BackColor != Color.Blue)
                 {
                     allButtons[currentX, currentY - 1].Enabled = true;
-                    cellsNearBlue[countForNearCells_1] = allButtons[currentX, currentY - 1];
-                    ++countForNearCells_1;
+                    cellsNearBlue.Add(allButtons[currentX, currentY - 1]);
                 }
                 if (currentX - 1 != -1 && allButtons[currentX - 1, currentY].BackColor != Color.Blue)
                 {
                     allButtons[currentX - 1, currentY].Enabled = true;
-                    cellsNearBlue[countForNearCells_1] = allButtons[currentX - 1, currentY];
-                    ++countForNearCells_1;
+                    cellsNearBlue.Add(allButtons[currentX - 1, currentY]);
                 }
 
                 if (currentY + 1 != 9 && allButtons[currentX, currentY + 1].BackColor != Color.Blue)
                 {
                     allButtons[currentX, currentY + 1].Enabled = true;
-                    cellsNearBlue[countForNearCells_1] = allButtons[currentX, currentY + 1];
-                    ++countForNearCells_1;
+                    cellsNearBlue.Add(allButtons[currentX, currentY + 1]);
                 }
                 if (currentX + 1 != 9 && allButtons[currentX + 1, currentY].BackColor != Color.Blue)
                 {
                     allButtons[currentX + 1, currentY].Enabled = true;
-                    cellsNearBlue[countForNearCells_1] = allButtons[currentX + 1, currentY];
-                    ++countForNearCells_1;
+                    cellsNearBlue.Add(allButtons[currentX + 1, currentY]);
                 } 
 
 
@@ -270,14 +281,14 @@ namespace Virus
             if (countMoves % 2 == 0)
             {
                 --remainingMovesCount_Antivirus;
-                remainingMoves_Antivirus.Text = Convert.ToString(remainingMovesCount_Antivirus);                
-                cellsNearBlue = new Button[81];
+                exit_from_PlayField.Text = Convert.ToString(remainingMovesCount_Antivirus);                
+                
             }
             else if (countMoves % 2 != 0)
             {
                 --remainingMovesCount_Virus;
                 remainingMoves_Virus.Text = Convert.ToString(remainingMovesCount_Virus);                
-                cellsNearRed = new Button[81];
+                
             }
             
             Button button = (Button)sender;
@@ -321,9 +332,6 @@ namespace Virus
             else
             InfectButtons(currentX, currentY, colorOfCurrentButton);
             
-            
-            
-
             ++countMoves;
         }
 
@@ -367,6 +375,36 @@ namespace Virus
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (countMoves % 2 != 0)
+            {
+                current_move.ForeColor = Color.Red;
+                current_move.Text = "Virus";
+
+                Enable_DisableRed(enable);
+                if (!isFirstMove)
+                {
+                    Enable_DisableBlue(disable);
+                }
+
+            }
+            else
+            {
+                current_move.ForeColor = Color.Blue;
+                current_move.Text = "Antivirus";
+                if (isFirstMove)
+                {
+                    allButtons[8, 8].Enabled = false;
+                    allButtons[8, 7].Enabled = true;
+                    allButtons[7, 8].Enabled = true;
+                    isFirstMove = false;
+                }
+                else
+                {
+                    Enable_DisableRed(disable);
+                    Enable_DisableBlue(enable);
+                }
+
+            }
             if (remainingMovesCount_Virus == 0 && remainingMovesCount_Antivirus == 0)
             {
                 if (countInfected > countUnInfected)
@@ -394,42 +432,21 @@ namespace Virus
             score_antivirus.Text = Convert.ToString(countUnInfected);
             foreach (var item in allButtons)
             {
-                if (item.BackColor == Color.Blue || item.BackColor == Color.Red)
+                if (item.BackColor == Color.Blue || item.BackColor == Color.Red && item.Enabled == true)
                 {
                     item.Enabled = false;
+                    if (item.BackColor == Color.Blue)
+                    {
+                        cellsNearBlue.Remove(item);
+                    }
+                    else if (item.BackColor == Color.Red)
+                    {
+                        cellsNearRed.Remove(item);
+                    }
                 }
             }
             
-            if (countMoves % 2 != 0)
-            {
-                current_move.ForeColor = Color.Red;
-                current_move.Text = "Virus";
-                
-                Enable_DisableRed(enable);
-                if (!isFirstMove)
-                {
-                    Enable_DisableBlue(disable);
-                }
-                
-            }
-            else
-            {
-                current_move.ForeColor = Color.Blue;
-                current_move.Text = "Antivirus";
-                if (isFirstMove)
-                {
-                    allButtons[8, 8].Enabled = false;
-                    allButtons[8, 7].Enabled = true;
-                    allButtons[7, 8].Enabled = true;
-                    isFirstMove = false;
-                }
-                else 
-                {
-                    Enable_DisableRed(disable);
-                    Enable_DisableBlue(enable);
-                }
-                
-            }
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -452,6 +469,13 @@ namespace Virus
         private void label7_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Menu menu = new Menu();
+            menu.Show();
         }
     }
 
