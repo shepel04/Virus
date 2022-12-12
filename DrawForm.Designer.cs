@@ -61,17 +61,19 @@
             this.winner_name.Size = new System.Drawing.Size(75, 25);
             this.winner_name.TabIndex = 5;
             this.winner_name.Text = "Draw";
+            this.winner_name.Click += new System.EventHandler(this.winner_name_Click);
             // 
             // DrawForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.YellowGreen;
             this.ClientSize = new System.Drawing.Size(273, 131);
             this.Controls.Add(this.winner_name);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "DrawForm";
-            this.Text = "DrawForm";
             this.Load += new System.EventHandler(this.DrawForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

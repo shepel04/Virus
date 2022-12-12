@@ -36,5 +36,10 @@ namespace Virus
         {
 
         }
+
+        private void winner_name_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

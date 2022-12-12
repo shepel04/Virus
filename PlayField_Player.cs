@@ -482,6 +482,19 @@ namespace Virus
         {
 
         }
+
+        private void arrow_picture_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Menu menu = new Menu();
+            menu.Show();
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+            RulesForm rulesInGame = new RulesForm();
+            rulesInGame.Show();
+        }
     }
 
         //private void PlayField_FormClosing(Object sender, FormClosingEventArgs e)

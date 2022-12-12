@@ -19,8 +19,8 @@ namespace Virus
 
         private void playButton_Click(object sender, EventArgs e)
         {            
-            ChooseOpponent formChooseOpponent = new ChooseOpponent();
-            formChooseOpponent.Show();
+            PlayField_Player playForm = new PlayField_Player();
+            playForm.Show();
             this.Hide();
         }
 
@@ -41,6 +41,8 @@ namespace Virus
 
         private void rulesButton_Click(object sender, EventArgs e)
         {
+            RulesForm rules = new RulesForm();  
+            rules.Show();
 
         }
 
