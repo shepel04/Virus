@@ -112,10 +112,10 @@
     <Compile Include="BlueWin.Designer.cs">
       <DependentUpon>BlueWin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Resources.Designer.cs">
+    <Compile Include="Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
+      <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="ChooseOpponent.resx">
       <DependentUpon>ChooseOpponent.cs</DependentUpon>
@@ -140,14 +140,16 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="BlueWin.resx">
       <DependentUpon>BlueWin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources.resx">
+    <EmbeddedResource Include="Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="App1.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -175,10 +177,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\virus_picture.png" />
+    <None Include="Resources\antivirus_picture.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\antivirus_picture.jpg" />
+    <None Include="Resources\virus_picture.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

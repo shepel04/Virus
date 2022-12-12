@@ -477,6 +477,11 @@ namespace Virus
             Menu menu = new Menu();
             menu.Show();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
         //private void PlayField_FormClosing(Object sender, FormClosingEventArgs e)
